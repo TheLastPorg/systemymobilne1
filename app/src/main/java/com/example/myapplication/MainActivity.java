@@ -32,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 chceckAnswerCorrectness(true);
-                correctAnswers++;
-                questionsAnswered++;
             }
         });
 
@@ -41,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 chceckAnswerCorrectness(false);
-                questionsAnswered++;
             }
         });
 
@@ -66,10 +63,12 @@ public class MainActivity extends AppCompatActivity {
         int resultMessageId = 0;
         if(userAnswer == correctAnswer) {
             resultMessageId = R.string.correct_answer;
+            correctAnswers++;
         }
         else {
             resultMessageId = R.string.incorrect_answer;
         }
+        questionsAnswered++;
         Toast.makeText(this, resultMessageId, Toast.LENGTH_SHORT).show();
     }
     private void setNextQuestion() {
@@ -78,8 +77,6 @@ public class MainActivity extends AppCompatActivity {
             questionsAnswered = 0;
             correctAnswers = 0;
         }
-        else {
-            questionTextView.setText(questions[currentIndex].getQuestionId());
-        }
+        questionTextView.setText(questions[currentIndex].getQuestionId());
     }
 }
